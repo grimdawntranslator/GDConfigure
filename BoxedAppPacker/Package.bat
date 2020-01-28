@@ -9,3 +9,5 @@ call upx.exe 7z.dll %ReleaseDir%\*.dll
 
 REM Use BoxedAppPackerConsole to Package Project files.
 call BoxedAppPackerConsole.exe GDConfigure.bxproj
+
+pause
