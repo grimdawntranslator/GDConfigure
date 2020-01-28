@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/locale">
+        <file>GDConfigure_zh_CN.qm</file>
+    </qresource>
+</RCC>
