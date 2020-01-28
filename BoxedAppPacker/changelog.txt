@@ -1,0 +1,425 @@
+2018.14 - 10 December 2018
+
+FIX: improved building speed.
+
+2018.13 - 2 December 2018
+
+ADD: improved packed executable launching speed due to readonly registry layer.
+
+2018.12 - 21 November 2018
+
+FIX: if virtual value was added to real key, real values of the key were hidden from the application.
+
+2018.11 - 29 October 2018
+
+FIX: NtQueryKey might return incorrect status for small buffers.
+FIX: virtual files didn't support NtQueryInformationFile / FileNormalizedNameInformation.
+FIX: a process failed to get full path of a registry key if it is too long.
+
+2018.10 - 3 July 2018
+
+FIX: packed .net executables might hang at startup on Windows XP.
+
+2018.9 - 29 June 2018
+
+FIX: packed executable might get incorrect path of itself.
+
+2018.8 - 27 June 2018
+
+FIX: fixed possible crashes if long paths are used.
+
+2018.7 - 9 June 2018
+
+FIX: packed applications might crash.
+
+2018.6 - 25 March 2018
+
+FIX: if a directory was marked as embedded, and the same directory existed in the system, the virtual directory
+     was not created.
+
+2018.5 - 20 March 2018
+
+FIX: packed applications might hang at startup.
+
+2018.4 - 9 March 2018
+
+FIX: packed applications might fail to load virtual registry on 32-bit Windows.
+
+2018.3 - 15 February 2018
+
+FIX: some pure .net exe might fail to run after packing.
+
+2018.2 - 12 February 2018
+
+ADD: if virtual font file is added to <WindowsFolder>\Fonts, then this font is available for packed application.
+
+2018.1 - 5 February 2018
+
+FIX: some Xojo applications might fail to load plugins.
+FIX: some applications might fail to enumerate virtual files on Windows 10 1709 build 17063.1000 or later builds.
+
+2017.31 - 18 December 2017
+
+FIX: BoxedApp Packer might crash if user clicked to Select - Select From Project to select entry point and immediately closed the dialog.
+FIX: if original executable had more than one tls callback, the very first tls callback only were called for packed executable.
+
+2017.30 - 12 December 2017
+
+FIX: virtual ffmpeg.exe crashed.
+FIX: fixed memory protection flags for some unusual PE sections' characteristics.
+
+2017.29 - 11 December 2017
+
+FIX: some packed executables couldn't start.
+
+2017.28 - 8 December 2017
+
+FIX: sometimes BoxedApp Packer didn't remove *.bxproj-journal files on exit.
+FIX: failed to run some packed executables that had relocations.
+FIX: failed to pack executables created by Confuser if x86 mode was enabled.
+
+2017.27 - 30 November 2017
+
+FIX: if a PE section's characteristics had both IMAGE_SCN_CNT_UNINITIALIZED_DATA and IMAGE_SCN_CNT_INITIALIZED_DATA,
+     BoxedApp filled it by zero.
+FIX: the cancellation of project building didn't work.
+
+2017.26 - 30 November 2017
+
+FIX: no progress was shown while building a project.
+
+2017.25 - 27 November 2017
+
+FIX: packer failed if input file was a .net executable, and if input and output files had the same name.
+
+2017.24 - 8 November 2017
+
+FIX: registry key enumeration might take a lot of time in some scenarios.
+FIX: file renaming might fail on Windows 10 build 1709.
+
+2017.23 - 24 October 2017
+
+FIX: a packed executable might crash on Windows 10 update 1709.
+
+2017.22 - 21 September 2017
+
+FIX: cuInit() (CUDA API) failed in packed applications sometimes.
+
+2017.21 - 26 July 2017
+
+FIX: if input exe had virtual (selected from project) path, then its content was being written twice to output exe.
+FIX: if both options "run packed exe in virtual environment" and "compress files" were enabled, the input exe was not compressed.
+
+2017.20 - 5 July 2017
+
+ADD: importing registration files (*.reg) to a project.
+
+2017.19 - 29 June 2017
+
+ADD: thread local memory pools improved BoxedApp speed.
+
+2017.18 - 28 June 2017
+
+ADD: improved NtQueryKey implementation.
+
+2017.17 - 20 June 2017
+
+FIX: packed mixed mode .net executable crashed.
+
+2017.16 - 14 June 2017
+
+ADD: added a button to clear log, auto scroll down when new messages come in.
+
+2017.15 - 12 June 2017
+
+FIX: NtQueryVirtualMemory might be called incorrectly for some information class.
+FIX: Returning status STATUS_OBJECT_NAME_INVALID instead of wrong STATUS_OBJECT_PATH_SYNTAX_BAD from Nt*** functions.
+FIX: NtQueryVirtualMemory handles addresses that belong to virtual processes.
+FIX: virtualized 32-bit Chrome crashed.
+
+2017.14 - 5 June 2017
+
+FIX: virtual COM components that use COM surrogate processes might crash.
+FIX: virtual executable might fail to write to stdout.
+FIX: fixed leaks of commited memory causes by incorrect releasing of memory by virtual sections are mapped views.
+
+2017.13 - 12 April 2017
+
+FIX: if log was empty, "Copy All" shown an exception.
+FIX: if user selected an item in a file's context menu, the file was selected as Input Path by mistake.
+
+2017.12 - 5 April 2017
+
+FIX: if "run packed exe in virtual environment" was enabled, then icon and version information
+     were not copied correctly to output exe.
+
+2017.11 - 31 March 2017
+
+ADD: user can select a file from a project as input file.
+
+2017.10 - 23 March 2017
+
+ADD: using new improved logging control, user can view warnings and errors separately,
+     copy log to the clipboard or a file.
+
+2017.9 - 15 March 2017
+
+FIX: 32-bit packed executables may fail to run if required embedded DLLs
+     are placed in System32 directory.
+
+2017.8 - 6 March 2017
+
+FIX: AllocConsole() failed in non-console virtual process.
+FIX: embedded executables with TLS data might crash on startup.
+FIX: Packer locked a project's file even of the project was closed already.
+FIX: Packer might crash on exit if a registry value was added.
+
+2017.7 - 21 February 2017
+
+FIX: some packed .net applications (e.g. Paint.Net) may hang on exit for some time.
+
+2017.6 - 9 February 2017
+
+FIX: in some cases created log is empty.
+
+2017.5 - 8 February 2017
+
+FIX: in some cases shared memory might be initialized not properly for a child process.
+ADD: improved logging.
+
+2017.4 - 26 January 2017
+
+FIX: a packed exe crashes on Win 7 if Symantec End Point Protection is installed and
+     when Symantec End Point Protection's General Exploit Mitigation feature is enabled.
+
+2017.3 - 23 January 2017
+
+FIX: if "Compress files" enabled, then .Net exe is compressed as well as other embedded files.
+ADD: added detailed information about written registry keys and values to build log.
+
+2017.2 - 16 January 2017
+
+FIX: the console version might crash if couldn't load a project file.
+
+2017.1 - 12 January 2017
+
+ADD: new tool to import all ActiveXs of the project: click to Tools - Import ActiveX Registration Information For All ActiveX Files...
+ADD: if input exe is added to Application Directory, it is ignored and not added to files (because it's input exe already);
+     if input exe is added to another directory, a warning is shown.
+
+4.0.38 - 21 December 2016
+
+FIX: hooked ntdll.dll!NtMapViewOfSectionEx, some applications might crash without it.
+
+4.0.37 - 5 December 2016
+
+ADD: importing RegAsm.exe output to registry for .Net libraries.
+FIX: if new project was saved and then a file was added, a user couldn't see the file in the list.
+
+4.0.36 - 29 November 2016
+
+FIX: BoxedAppPackerConsole.exe loaded *.bxproj files as XML format based project files by mistake.
+
+4.0.35 - 15 November 2016
+
+FIX: system call NtQueryDirectoryFile / FileReparsePointInformation might crash.
+
+4.0.34 - 9 November 2016
+
+FIX: sometimes BoxedApp incorrectly calculated offsets for views of virtual sections.
+
+4.0.33 - 3 November 2016
+
+FIX: the Packer wrote "Dll Characteristics" to wrong place in packed file.
+ADD: updated icon file for the application and for the installer.
+
+4.0.32 - 26 October 2016
+
+ADD: improved mapping large virtual files: the data is read from the virtual file to a view,
+     when one tries to read the data first time.
+
+4.0.31 - 20 October 2016
+
+FIX: boxedapp read all data from virtual file when a section was created, now data is read when the
+     section is being mapped. It's very important optimization for large virtual files.
+
+4.0.30 - 22 September 2016
+
+ADD: both 32-bit and 64-bit views of registry are supported.
+
+4.0.29 - 17 September 2016
+
+FIX: importing ActiveX failed in some cases: some keys and values might be lost.
+
+4.0.28 - 6 September 2016
+
+FIX: importing ActiveX failed in some cases: some keys might be lost.
+
+4.0.27 - 5 September 2016
+
+FIX: fixed handles leak.
+
+4.0.26 - 1 August 2016
+
+FIX: if a project was loaded from *.boxedappproj file and then saved as *.bxproj file, then it was saved
+     incorrectly.
+                                                   
+4.0.25 - 22 July 2016
+
+FIX: if cmd.exe was packed, and "virtualize all changes of file system and registry" was enabled, then command
+     'del' for real file removed the file from real file system. It's fixed, so now the real file is not being
+     removed from real file system, but instead is marked as "virtually deleted".
+
+4.0.24 - 15 July 2016
+
+FIX: IE might hang being launched under BoxedApp.
+FIX: being run by the packed app (option "share virtual environment with child processes" enabled) IE8 might not load
+     an URL properly on Win7 x64.
+
+4.0.23 - 14 July 2016
+
+FIX: if input executable is not a .net application, and resources (version information, icon) should be updated,
+     then packing failed with error "a process cannot access the file because it is being used by another process".
+
+4.0.22 - 12 July 2016
+
+ADD: new binary project file format to support large projects.
+
+4.0.21 - 7 July 2016
+
+FIX: BoxedApp Packer set "run packed exe in virtual environment" for non-Xojo applications automatically by mistake.
+
+4.0.20 - 24 June 2016
+
+ADD: improved user experience of packing Xojo applications: BoxedApp Packer suggests to add Libs and Resources directories,
+     and also set "Run packed exe in virtual environment" that is required for Xojo applications.
+
+4.0.19 - 21 June 2016
+
+FIX: embedded DLLs might crash if large aware address enabled for the process.
+
+4.0.18 - 10 June 2016
+
+ADD: signed binaries.
+ADD: a lot of new predefined folders: system32 for 32-bit and 64-bit applications, user documents and others.
+
+4.0.17 - 4 May 2016
+
+FIX: fixed several UI bugs
+FIX: if an executable was created by exeoutput, then packed exe didn't load content completely.
+FIX: sometimes saved project file might contain incorrect XML data.
+ADD: BoxedApp Packer saves project content faster using SAX. Large projects are supported.
+
+4.0.16 - 21 April 2016
+
+ADD: BoxedApp Packer loads project content faster using SAX. Large projects are supported.
+FIX: sometimes size of output exe is incorrect.
+
+4.0.15 - 8 April 2016
+
+FIX: if PAGE_WRITECOPY or PAGE_EXECUTE_WRITECOPY was specified in CreateFileMapping, BoxedApp still
+     wrote updated memory back to the file. It may cause crashes for some packed executables.
+
+4.0.14 - 7 April 2016
+
+FIX: ability to pack executables made by Max (a CYCLING '74 product).
+
+4.0.13 - 31 March 2016
+
+FIX: embedded files might work incorrectly being updated
+FIX: embedded exe may not run being launched using CreateProcessWithLogonW.
+
+4.0.12 - 23 March 2016
+
+ADD: speed optimizations
+ADD: a detailed log is provided during loading, saving and building a project.
+ADD: context menu items for files, registry keys and values to quickly change their state: embedded or external.
+FIX: sometimes embedded executable file couldn't be executed using CreateProcessAsUserW under Win 10.
+FIX: embedded executable file couldn't be executed using CreateProcessWithLogonW and CreateProcessWithTokenW under Win 10.
+FIX: embedded PDF file may not be loaded into Adobe Reader properly under Win 10.
+
+4.0.11 - 4 February 2016
+
+ADD: being run on Win 10 BoxedApp Packer doesn't require to install .net 2.0 any more.
+
+4.0.10 - 20 January 2016
+
+FIX: embedded executables may fail to launch.
+
+4.0.9 - 14 January 2016
+
+FIX: a packed application built using atom/electron framework crashes with output:
+     "[384:0112/143143:FATAL:scoped_handle.cc(184)] Check failed: 0U != (flags & 0x00000002) (0 vs. 0)"
+
+4.0.8 - 13 January 2016
+
+FIX: embedded AnyCpu .Net exe failed to launch on Win10 x64.
+
+4.0.7 - 11 January 2016
+
+FIX: if input exe is x64 (or AnyCpu on x64 system) .net exe, then it's failed to launch embedded x64 .net exe (or AnyCpu
+     on x64 system) if bxsdk64.dll is not available
+
+4.0.6 - 11 January 2016
+
+FIX: embedded .net exe built as AnyCpu may crash for some values of stack reserve in the PE headers
+FIX: if input exe contains tls data and 'run as virtual exe' option enabled, then output exe may crash at startup if a DLL
+     with tls data was preloaded into the process (e.g. system extensions)
+FIX: packed exe might crash when tried to access to a virtual file located on a network location
+
+4.0.5 - 18 December 2015
+
+FIX: if input exe contains tls data and 'run as virtual exe' option enabled, then output exe may crash at startup on Win 8.1 x64
+
+4.0.4 - 16 December 2015
+
+ADD: 'run as virtual exe' option is suggested if it's impossible to modify input executable file
+FIX: couldn't pack executables with incorrect size of headers
+FIX: incorrectly imported directories whose names contained non ANSI characters
+
+4.0.3 - 14 December 2015
+
+FIX: Packer may crash on Win 10 if Region - Region Formats - Format is set to some locales, e.g. English (Bahamas).
+
+4.0.2 - 2 December 2015
+
+FIX: even if file compression enabled, generated packed exe still contained uncompressed data
+
+4.0.1 - 30 November 2015
+
+FIX: packed .net exe files might hang at startup
+FIX: if a special character is used for a file name, then Packer can't save project: project file becomes empty
+
+4.0.0.0 - 26 November 2015
+
+Great update of the UI and Packer core.
+
+3.3.0.23 - 15 October 2015
+
+FIX: embedded exe that contains TLS directory may crash on Win 8.1
+
+3.3.0.22 - 8 September 2015
+
+ADD: uncompressed files can be optionally cached to make big packed executables start up faster
+
+3.3.0.21 - 4 September 2015
+
+FIX: now if embedded .Net exe is built as AnyCpu it is running as 64 bit process on Windows x64, previously such .net exe files were launched as 32 bit processes
+
+3.3.0.20 - 4 September 2015
+
+FIX: embedded exe that contains TLS directory may crash on Win10
+FIX: packed exe may crash at startup on Win10 if some DLLs are embedded (msvcr100.dll is one of such DLLs)
+ADD: files compression
+
+3.3.0.19 - 31 August 2015
+
+ADD: new option: hide splashscreen when packed executable shows a window
+FIX: embedded files can be created incorrectly on some network locations
+
+3.3.0.18 - 21 July 2015
+
+FIX: packed executables may not work on Parallels 9
+FIX: packed FlashBoot-2.2i-portable shown error at startup
+FIX: sometimes the Packer crashes when one tries to add a folder
+ADD: new option: a splashscreen display time
