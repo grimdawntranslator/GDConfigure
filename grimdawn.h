@@ -57,7 +57,8 @@ class GrimDawn : public QObject
 
     void updateLanguagesInfo(const QString &zipfile);
 
-    void CheckJobs();
+    bool CheckExistLanguage();
+    void CheckJobs(JobType type);
     void doJob(JobType type, const QString &file, const QStringList &args);
     void extractLanguageInfo(const QString &file);
     void packageLanguageInfo(const QString &file);
@@ -84,6 +85,7 @@ public:
 
 signals:
     void message(QString message);
+    void error(QString errstr, bool dialog=false);
     void JobFinished(JobType type);
     void JobFailed(JobType type);
     void finished();

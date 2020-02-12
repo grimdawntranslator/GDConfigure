@@ -1,4 +1,6 @@
+#include <QMessageBox>
 #include <QDebug>
+#include <qlogging.h>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -9,18 +11,35 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
+    hasError = false;
+
     gd = new GrimDawn();
     connect(gd, SIGNAL(finished()), this, SLOT(on_GDInfoLoadded()));
     connect(gd, SIGNAL(message(QString)), this, SLOT(on_ShowMessage(QString)));
+    connect(gd, SIGNAL(error(QString, bool)), this, SLOT(on_ShowError(QString, bool)));
     gd->loadGDInfo();
-
-    ui->pushButton_Apply->setDisabled(!gd->isGamePathVaild() | gd->isGrimDawnRunning());
-
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::Show()
+{
+    this->show();
+
+    if (!gd->isGamePathVaild()) {
+        on_ShowError(tr("Invalid Game Path! Please put this util to game folder."), true);
+    }
+
+    if (gd->isGrimDawnRunning()) {
+        on_ShowError(tr("Game is running! Please stop it first!"), true);
+    }
+
+    if (hasError) {
+        ui->pushButton_Apply->setEnabled(false);
+    }
 }
 
 void MainWindow::on_ShowMessage(QString message)
@@ -31,10 +50,29 @@ void MainWindow::on_ShowMessage(QString message)
         ui->label_Messages->setText(message);
 }
 
+void MainWindow::on_ShowError(QString errstr, bool dialog)
+{
+    hasError = true;
+
+    ui->centralwidget->setEnabled(false);
+
+    if (dialog) {
+        ui->label_Messages->setText(tr("Error!"));
+
+        QMessageBox::warning(this, tr("Error"), errstr);
+    } else {
+        ui->label_Messages->setText(errstr);
+    }
+}
+
 void MainWindow::on_GDInfoLoadded()
 {
     QString GamePath = gd->GamePath();
     ui->label_GamePath->setText(GamePath.replace('/', '\\'));
+
+    if (hasError)
+        return;
+
     ui->label_Language->setText(gd->Language().language);
     ui->label_Font->setText(gd->Language().font.toLower());
 

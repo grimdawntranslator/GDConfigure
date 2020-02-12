@@ -18,13 +18,17 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     GrimDawn *gd;
+    bool hasError;
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void Show();
+
 private slots:
     void on_ShowMessage(QString message);
+    void on_ShowError(QString errstr, bool dialog=false);
     void on_GDInfoLoadded();
     void on_pushButton_Apply_clicked();
     void on_comboBox_Languages_currentIndexChanged(int index);

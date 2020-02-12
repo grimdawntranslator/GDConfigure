@@ -2,10 +2,10 @@ TEMPLATE = app
 TARGET = GDConfigure
 win32: CONFIG(debug,debug|release): TARGET = $${TARGET}d
 
-CONFIG(debug,debug|release): DESTDIR += $$PWD/binary/debug
-CONFIG(release,debug|release): DESTDIR += $$PWD/binary/release
+CONFIG(debug,debug|release): DESTDIR += $$PWD/debug
+CONFIG(release,debug|release): DESTDIR += $$PWD/release
 
-VERSION = 0.0.1
+VERSION = 1.0.0
 win32 {
     RC_ICONS = GrimDawn.ico
     RC_LANG = 0x0004

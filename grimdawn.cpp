@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QDebug>
+#include <qlogging.h>
 
 #include "utils.h"
 #include "grimdawn.h"
@@ -17,7 +18,7 @@ GrimDawn::GrimDawn(QObject *parent) : QObject(parent), _SupportFonts({ "en", "bg
     _JobExtractHasError = false;
     _JobPackageHasError = false;
 
-#if defined(DEBUG_MODE)
+#if defined (DEBUG_MODE)
     _GamePath = QDir::currentPath();
     _SettingPath = QString("%1/%2").arg(_GamePath).arg("settings");
 #else
@@ -104,6 +105,9 @@ void GrimDawn::loadLanguages()
         _Language.font = "en";
     } else {
         foreach (QString file, dir.entryList()) {
+#if defined(DEBUG_MODE)
+            qDebug() << "Localization file:" << file;
+#endif
             GDLanguage language;
             language.file = file;
             language.basename = file.chopped(QString(".zip").length());
@@ -129,10 +133,13 @@ void GrimDawn::loadFonts()
         return;
 
     foreach (QString font, dir.entryList(QDir::Dirs|QDir::NoDot|QDir::NoDotDot)) {
-        if (_SupportFonts.contains(font)) {
+#if defined (DEBUG_MODE)
+        qDebug() << "Font folder:" << font;
+#endif
+        if (_SupportFonts.contains(font.toLower())) {
             QDir sub(dir.absoluteFilePath(font), "*.fnt");
             if (!sub.isEmpty()) {
-                _Fonts[font] = QString("setting/font/%1").arg(font);
+                _Fonts[font.toLower()] = QString("setting/font/%1").arg(font);
             }
         }
     }
@@ -147,7 +154,9 @@ void GrimDawn::updateLanguagesInfo(const QString &zipfile)
     }
 
     QString def = QString("%1/%2/%3").arg(_LanguagePath).arg(language->basename).arg("language.def");
-    // qDebug() << "Language Def:" << def;
+#if defined (DEBUG_MODE)
+     qDebug() << "Language Def:" << def;
+#endif
 
     QFile file(def);
     file.open(QIODevice::ReadWrite | QIODevice::Text);
@@ -180,23 +189,61 @@ void GrimDawn::updateLanguagesInfo(const QString &zipfile)
     }
 
     if (_Language.language == language->language) {
-        if (!_Language.file.isEmpty() && _Language.file != zipfile) {
-            emit message(QString(tr("Error: %1 and %2 has the same Language Name!")).arg(_Language.file).arg(zipfile));
-        } else {
-            _Language = *language;
-        }
-        qDebug() << "Font:" << _Language.font;
+        _Language = *language;
     }
 }
 
-void GrimDawn::CheckJobs()
+bool GrimDawn::CheckExistLanguage()
+{
+    for (int i=0; i+1<_Languages.size(); i++) {
+#if defined (DEBUG_MODE)
+        qDebug() << "CheckExistLanguage:" << _Languages.at(i).file;
+#endif
+        for (int j=i+1; j < _Languages.size(); j++) {
+#if defined (DEBUG_MODE)
+            qDebug() << "CheckExistLanguage:" << _Languages.at(i).file << "Compare:" << _Languages.at(j).file;
+#endif
+            if (_Languages.at(i).language == _Languages.at(j).language) {
+                QStringList errs;
+                errs.clear();
+                errs.append(tr("The following files have the same Language Name!"));
+                errs.append("");
+                errs.append(tr("Language Name:"));
+                errs.append("    " + _Languages.at(i).language);
+                errs.append("");
+                errs.append(tr("Files:"));
+                errs.append("    " + _Languages.at(i).file);
+                errs.append("    " + _Languages.at(j).file);
+
+                emit error(errs.join("\n"), true);
+
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+void GrimDawn::CheckJobs(JobType type)
 {
     if (_jobs.isEmpty()) {
+#if defined (DEBUG_MODE)
         qDebug() << "AllJobs done!";
+#endif
         if (_JobExtractHasError || _JobPackageHasError) {
-            emit message(tr("Failed!"));
+            emit error(tr("Failed!"), false);
             emit failed();
         } else {
+            CheckExistLanguage();
+            switch (type)
+            {
+            case JobExtract:
+                qDebug() << "Font:" << _Language.font;
+                break;
+            case JobPackage:
+                break;
+            }
             emit finished();
         }
     }
@@ -385,11 +432,15 @@ void GrimDawn::JobFinished(int exitCode, QProcess::ExitStatus exitStatus)
     switch (type)
     {
     case JobExtract:
+#if defined (DEBUG_MODE)
         qDebug() << "JobExtract Finished";
+#endif
         updateLanguagesInfo(job->name());
         break;
     case JobPackage:
+#if defined (DEBUG_MODE)
         qDebug() << "JobPackage Finished";
+#endif
         emit message(tr("OK!"));
         break;
     }
@@ -398,7 +449,7 @@ void GrimDawn::JobFinished(int exitCode, QProcess::ExitStatus exitStatus)
     _jobs.remove(job->name());
     delete job;
 
-    CheckJobs();
+    CheckJobs(type);
 }
 
 void GrimDawn::JobFailed(QProcess::ProcessError error)
@@ -410,11 +461,11 @@ void GrimDawn::JobFailed(QProcess::ProcessError error)
     {
     case JobExtract:
         _JobExtractHasError = true;
-        qDebug() << "Error: JobExtract" << job->name() << error;
+        qCritical() << "Error: JobExtract" << job->name() << error;
         break;
     case JobPackage:
         _JobPackageHasError = true;
-        qDebug() << "Error: JobPackage" << job->name() << error;
+        qCritical() << "Error: JobPackage" << job->name() << error;
         break;
     }
     emit JobFailed(type);
@@ -422,5 +473,5 @@ void GrimDawn::JobFailed(QProcess::ProcessError error)
     _jobs.remove(job->name());
     delete job;
 
-    CheckJobs();
+    CheckJobs(type);
 }

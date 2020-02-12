@@ -4,18 +4,28 @@
 <context>
     <name>GrimDawn</name>
     <message>
-        <location filename="grimdawn.cpp" line="184"/>
-        <source>Error: %1 and %2 has the same Language Name!</source>
-        <translation>错误：%1 和 %2 具有相同的语言名称！</translation>
+        <location filename="grimdawn.cpp" line="209"/>
+        <source>The following files have the same Language Name!</source>
+        <translation>以下文件具有相同的语言名称！</translation>
     </message>
     <message>
-        <location filename="grimdawn.cpp" line="197"/>
+        <location filename="grimdawn.cpp" line="211"/>
+        <source>Language Name:</source>
+        <translation>语言名称：</translation>
+    </message>
+    <message>
+        <location filename="grimdawn.cpp" line="214"/>
+        <source>Files:</source>
+        <translation>文件：</translation>
+    </message>
+    <message>
+        <location filename="grimdawn.cpp" line="235"/>
         <source>Failed!</source>
         <translation>失败！</translation>
     </message>
     <message>
-        <location filename="grimdawn.cpp" line="334"/>
-        <location filename="grimdawn.cpp" line="393"/>
+        <location filename="grimdawn.cpp" line="381"/>
+        <location filename="grimdawn.cpp" line="444"/>
         <source>OK!</source>
         <translation>完成！</translation>
     </message>
@@ -58,7 +68,27 @@
         <translation>应用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="43"/>
+        <location filename="mainwindow.cpp" line="23"/>
+        <source>Invalid Game Path! Please put this util to game folder.</source>
+        <translation>无效的游戏路径！请将此工具放入游戏目录。</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="27"/>
+        <source>Game is running! Please stop it first!</source>
+        <translation>游戏正在运行！请先停止游戏！</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="55"/>
+        <source>Error!</source>
+        <translation>错误！</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="57"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="76"/>
         <source>English (US)</source>
         <translation>英语（美国）</translation>
     </message>
