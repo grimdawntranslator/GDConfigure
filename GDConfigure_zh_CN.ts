@@ -38,59 +38,74 @@
         <translation>《恐怖黎明》语言 &amp; 字体切换工具</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="58"/>
+        <location filename="mainwindow.ui" line="64"/>
         <source>Font:</source>
         <translation>字体：</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="87"/>
+        <location filename="mainwindow.ui" line="135"/>
         <source>Game Path:</source>
         <translation>路径：</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="110"/>
+        <location filename="mainwindow.ui" line="54"/>
         <source>Language:</source>
         <translation>语言：</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="131"/>
+        <location filename="mainwindow.ui" line="119"/>
+        <source>Version:</source>
+        <translation>版本：</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="178"/>
         <source>Select the language you want to use</source>
         <translation>请选择要使用的语言</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="177"/>
+        <location filename="mainwindow.ui" line="230"/>
         <source>Select the font you want to use</source>
         <translation>请选择要使用的字体</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="244"/>
+        <location filename="mainwindow.ui" line="309"/>
         <source>Apply</source>
         <translation>应用</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="23"/>
+        <location filename="mainwindow.cpp" line="16"/>
+        <source>Grim Dawn Configure - %1</source>
+        <translation>《恐怖黎明》语言 &amp; 字体切换工具 - %1</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="35"/>
         <source>Invalid Game Path! Please put this util to game folder.</source>
         <translation>无效的游戏路径！请将此工具放入游戏目录。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="27"/>
+        <location filename="mainwindow.cpp" line="39"/>
         <source>Game is running! Please stop it first!</source>
         <translation>游戏正在运行！请先停止游戏！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="55"/>
+        <location filename="mainwindow.cpp" line="62"/>
         <source>Error!</source>
         <translation>错误！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="57"/>
+        <location filename="mainwindow.cpp" line="64"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="76"/>
+        <location filename="mainwindow.cpp" line="84"/>
         <source>English (US)</source>
         <translation>英语（美国）</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="108"/>
+        <source>No fonts installed! Use Embedded fonts!</source>
+        <translation>未安装任何字体！使用游戏内置字体！</translation>
     </message>
 </context>
 </TS>

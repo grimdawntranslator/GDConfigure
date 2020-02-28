@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     hasError = false;
 
+    this->setWindowTitle(QString(tr("Grim Dawn Configure - %1")).arg(QCoreApplication::applicationVersion()));
+
     gd = new GrimDawn();
     connect(gd, SIGNAL(finished()), this, SLOT(on_GDInfoLoadded()));
     connect(gd, SIGNAL(message(QString)), this, SLOT(on_ShowMessage(QString)));
@@ -74,6 +76,7 @@ void MainWindow::on_GDInfoLoadded()
         return;
 
     ui->label_Language->setText(gd->Language().language);
+    ui->label_Version->setText(gd->Language().version);
     ui->label_Font->setText(gd->Language().font.toLower());
 
     // Languages
@@ -95,9 +98,14 @@ void MainWindow::on_GDInfoLoadded()
             else
                 font = QString("%1 (%2)").arg(iter.key()).arg(iter.value());
 
-            ui->comboBox_Fonts->addItem(font, iter.key());
+            if (!iter.value().isEmpty())
+                ui->comboBox_Fonts->addItem(font, iter.key());
 
             ++iter;
+        }
+        if (ui->comboBox_Fonts->count() == 0) {
+            ui->comboBox_Fonts->setEnabled(false);
+            ui->label_Messages->setText(tr("No fonts installed! Use Embedded fonts!"));
         }
     }
     int iFont = ui->comboBox_Fonts->findText(gd->Language().font.toLower(), Qt::MatchStartsWith);

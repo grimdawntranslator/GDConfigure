@@ -2,7 +2,7 @@
 
 set CurDir=%~dp0
 set CurDir=%CurDir:~,-1%
-set ReleaseDir=%CurDir%\..\release\
+set ReleaseDir=%CurDir%\..\release
 
 REM Use UPX to compress dlls.
 call upx.exe 7z.dll %ReleaseDir%\*.dll
