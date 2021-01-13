@@ -17,16 +17,18 @@ win32 {
     QMAKE_TARGET_COPYRIGHT = "Copyright (C) 2020-2040 "$${QMAKE_TARGET_COMPANY}
 
     DEPLOYMENT_OPTS += --force
+    DEPLOYMENT_OPTS += --compiler-runtime
     DEPLOYMENT_OPTS += --no-translations
     DEPLOYMENT_OPTS += --no-svg
-    DEPLOYMENT_OPTS += --no-angle
     DEPLOYMENT_OPTS += --no-opengl-sw
     DEPLOYMENT_OPTS += --no-system-d3d-compiler
 
-    CONFIG(debug,debug|release): DEPLOYMENT_OPTS += --debug
-    CONFIG(release,debug|release): DEPLOYMENT_OPTS += --release
+    lessThan(QT_MAJOR_VERSION, 6) {
+        DEPLOYMENT_OPTS += --no-angle
+        DEPLOYMENT_OPTS += --no-webkit2
+    }
 
-    QMAKE_POST_LINK = windeployqt $${DEPLOYMENT_OPTS} $$DESTDIR
+    QMAKE_POST_LINK = $$[QT_INSTALL_BINS]/windeployqt $${DEPLOYMENT_OPTS} $${DESTDIR}
 }
 
 QT += core gui
