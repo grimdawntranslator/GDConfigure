@@ -74,6 +74,7 @@ Thumbs.db
 
 # Build dirs
 # --------
+*.bxproj-journal
 .tmp
 binary
 compile_commands.json
