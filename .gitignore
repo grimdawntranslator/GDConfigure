@@ -76,4 +76,7 @@ Thumbs.db
 # --------
 .tmp
 binary
+compile_commands.json
+deployment/
+
 
